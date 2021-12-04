@@ -1,12 +1,5 @@
 def part1(input_data):
-    numbers = input_data[0].split(",")
-    boards = []
-    for i in range(1, len(input_data), 6):
-        rows = input_data[i + 1 : i + 6]
-        rows = list(
-            map(lambda x: list(filter(lambda y: len(y) > 0, x.split(" "))), rows)
-        )
-        boards.append(rows)
+    numbers, boards = parse_input(input_data)
 
     for number in numbers:
         # Put number on all boards
@@ -26,24 +19,8 @@ def part1(input_data):
                     return int(number) * unmarked_sum(board)
 
 
-def unmarked_sum(board):
-    return sum(
-        map(
-            lambda x: sum(map(lambda y: int(y) if y != "x" else 0, x)),
-            board,
-        )
-    )
-
-
 def part2(input_data):
-    numbers = input_data[0].split(",")
-    boards = []
-    for i in range(1, len(input_data), 6):
-        rows = input_data[i + 1 : i + 6]
-        rows = list(
-            map(lambda x: list(filter(lambda y: len(y) > 0, x.split(" "))), rows)
-        )
-        boards.append(rows)
+    numbers, boards = parse_input(input_data)
 
     board_scores = [0 for x in boards]
     last_index = None
@@ -68,6 +45,28 @@ def part2(input_data):
                     last_index = i
 
     return board_scores[last_index]
+
+
+def unmarked_sum(board):
+    return sum(
+        map(
+            lambda x: sum(map(lambda y: int(y) if y != "x" else 0, x)),
+            board,
+        )
+    )
+
+
+def parse_input(input_data):
+    numbers = input_data[0].split(",")
+    boards = []
+    for i in range(1, len(input_data), 6):
+        rows = input_data[i + 1 : i + 6]
+        rows = list(
+            map(lambda x: list(filter(lambda y: len(y) > 0, x.split(" "))), rows)
+        )
+        boards.append(rows)
+
+    return numbers, boards
 
 
 if __name__ == "__main__":
