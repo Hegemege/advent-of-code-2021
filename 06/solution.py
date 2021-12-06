@@ -7,8 +7,6 @@ def part12(input_data, days):
     for i in range(days):
         new_fish = {x: 0 for x in range(9)}
         for age in range(9):
-            if age not in fish:
-                continue
             if age == 0:
                 new_fish[6] += fish[age]
                 new_fish[8] += fish[age]
