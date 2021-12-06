@@ -20,10 +20,6 @@ def part12(input_data, days):
     return sum(fish.values())
 
 
-def part2(input_data):
-    pass
-
-
 if __name__ == "__main__":
     with open("input", "r") as input_file:
         input_data = list(map(lambda x: x.strip(), input_file.readlines()))
